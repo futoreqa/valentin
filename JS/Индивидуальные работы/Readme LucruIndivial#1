@@ -13,239 +13,129 @@
   node "Individual_Work_1.js"
 
 Описание лабораторной работы : 
-  Цель лабораторной работы — реализовать и протестировать функциональность 
-  анализа массива финансовых транзакций. Проект демонстрирует навыки работы с JavaScript, 
-  включая обработку массивов, фильтрацию, агрегацию данных и работу с датами.
+  Познакомиться с основами JavaScript, научиться писать и выполнять код в браузере и в локальной среде, разобраться с базовыми конструкциями языка.
 
-Краткая документация к проекту
-  Структура транзакции
-  Каждая транзакция — объект со следующими свойствами:
-{
-  transaction_id: string,           // Уникальный идентификатор
-  transaction_date: string,         // Дата в формате YYYY-MM-DD
-  transaction_amount: number,       // Сумма транзакции
-  transaction_type: "debit"|"credit", // Тип: дебетовая или кредитная
-  transaction_description: string,  // Описание
-  merchant_name: string,            // Название продавца
-  card_type: string                 // Тип карты (Visa, MasterCard и др.)
-}
-Перечень функций 
-1. getUniqueTransactionTypes(transactions) Возвращает массив уникальных типов транзакций. Пример: ["debit", "credit"] 
-2. calculateTotalAmount(transactions) Возвращает общую сумму всех транзакций. Пример: 370.0 
-3. calculateTotalAmountByDate(transactions, year, month, day) Вычисляет сумму транзакций за указанную дату, месяц или год. 
-4. getTransactionByType(transactions, type) Возвращает транзакции заданного типа ("debit" или "credit"). 
-5. getTransactionsInDateRange(transactions, startDate, endDate) Фильтрует транзакции, попадающие в заданный диапазон дат. Формат дат: YYYY-MM-DD 
-6. getTransactionsByMerchant(transactions, merchantName) Возвращает транзакции, совершённые у указанного продавца. 
-7. calculateAverageTransactionAmount(transactions) Вычисляет среднюю сумму всех транзакций. Пример: 74.0 
-8. getTransactionsByAmountRange(transactions, minAmount, maxAmount) Фильтрация по диапазону сумм. Пример: getTransactionsByAmountRange(transactions, 50, 100); 
-9. calculateTotalDebitAmount(transactions) Возвращает сумму всех дебетовых транзакций. 
-10. findMostTransactionsMonth(transactions) Возвращает месяц (в формате YYYY-MM), в который было больше всего транзакций. 
-11. findMostDebitTransactionMonth(transactions) Возвращает месяц с наибольшим количеством дебетовых транзакций. 
-12. mostTransactionTypes(transactions) Возвращает тип транзакции, который встречается чаще: "debit" "credit" "equal" — если их количество одинаково 
-13. getTransactionsBeforeDate(transactions, date) Возвращает транзакции, совершённые до указанной даты. 
-14. findTransactionById(transactions, id) Находит транзакцию по её идентификатору. Пример: js Копировать Редактировать findTransactionById(transactions, "3"); 
-15. mapTransactionDescriptions(transactions) Возвращает массив строк — описаний транзакций.
+Условие
 
-Примеры использования проекта с приложением скриншотов или фрагментов кода
-function getUniqueTransactionTypes(transactions) {
-    return [...new Set(transactions.map(t => t.transaction_type))];
-}
+Задание 1. Выполнение кода в браузере
+Подготовка среды:
 
-/**
- * Вычисляет общую сумму всех транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {number} Общая сумма
- */
-function calculateTotalAmount(transactions) {
-    return transactions.reduce((sum, t) => sum + t.transaction_amount, 0);
-}
+Установите текстовый редактор (например, VS Code).
+Установите Node.js с официального сайта.
+Откройте DevTools в браузере (нажмите F12 и выберите вкладку Консоль).
+Выполнение кода JavaScript в браузере
 
-/**
- * Вычисляет общую сумму транзакций за определённую дату.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {number} [year] - Год
- * @param {number} [month] - Месяц (1-12)
- * @param {number} [day] - День месяца
- * @returns {number} Общая сумма
- */
-function calculateTotalAmountByDate(transactions, year, month, day) {
-    return transactions
-        .filter(t => {
-            const d = new Date(t.transaction_date);
-            return  (!year  || d.getFullYear() === year) &&
-                    (!month || d.getMonth() + 1 === month) &&
-                    (!day   || d.getDate() === day);
-        })
-        .reduce((sum, t) => sum + t.transaction_amount, 0);
+Откройте консоль разработчика (F12 → Console).
+Напишите команду console.log("Hello, world!"); и нажмите Enter.
+Запишите в консоли 2 + 3 и посмотрите результат.
+Создание первой HTML-страницы с JavaScript
+
+Создайте файл index.html и вставьте в него следующий код.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Привет, мир!</title>
+  </head>
+  <body>
+    <script>
+      alert("Привет, мир!");
+      console.log("Hello, console!");
+    </script>
+  </body>
+</html>
+Откройте index.html в браузере и посмотрите, как выполняется код.
+Подключение внешнего JavaScript-файла
+
+Создайте файл script.js и добавьте в него код:
+alert("Этот код выполнен из внешнего файла!");
+console.log("Сообщение в консоли");
+Подключите файл в index.html, добавив в <head>
+<script src="script.js"></script>
+Откройте страницу в браузере.
+Задание 2. Работа с типами данных
+Объявление переменных и работа с типами данных.
+
+В файле script.js создайте несколько переменных:
+
+name - строка с вашим именем.
+birthYear - число, представляющее год вашего рождения.
+isStudent - логическая переменная, указывающая, являетесь ли вы студентом.
+Выведите их в консоль.
+
+Управление потоком выполнения (условия и циклы)
+
+Добавьте следующий код в script.js:
+let score = prompt("Введите ваш балл:");
+if (score >= 90) {
+  console.log("Отлично!");
+} else if (score >= 70) {
+  console.log("Хорошо");
+} else {
+  console.log("Можно лучше!");
 }
 
-/**
- * Возвращает транзакции определённого типа.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {string} type - Тип транзакции
- * @returns {Transaction[]} Отфильтрованные транзакции
- */
-function getTransactionByType(transactions, type) {
-    return transactions.filter(t => t.transaction_type === type);
+for (let i = 1; i <= 5; i++) {
+  console.log(`Итерация: ${i}`);
+}
+Откройте страницу в браузере и посмотрите, как работают условия и циклы.
+
+Контрольные вопросы
+Чем отличается var от let и const?
+Что такое неявное преобразование типов в JavaScript?
+Как работает оператор == в сравнении с ===?
+
+alert("This code is executed from an external file!");
+console.log("Message in the console");
+
+
+КОД : 
+
+----JAVA SCRIPT----
+
+
+let name = "valentin";
+let birthYear = 2004;
+let isStudent = true;
+
+console.log(name);
+console.log(birthYear);
+console.log(isStudent);
+
+let score = prompt("Enter your score:");
+if (score >= 90) {
+    console.log("Excellent!");
+} else if (score >= 70) {
+    console.log("Good");
+} else {
+    console.log("Could be better!");
 }
 
-/**
- * Возвращает транзакции в пределах заданного диапазона дат.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {string} startDate - Начальная дата (в формате YYYY-MM-DD)
- * @param {string} endDate - Конечная дата (в формате YYYY-MM-DD)
- * @returns {Transaction[]} Отфильтрованные транзакции
- */
-function getTransactionsInDateRange(transactions, startDate, endDate) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    return transactions.filter(t => {
-        const d = new Date(t.transaction_date);
-        return d >= start && d <= end;
-    });
-}
-
-/**
- * Возвращает транзакции от указанного продавца.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {string} merchantName - Название продавца
- * @returns {Transaction[]} Отфильтрованные транзакции
- */
-function getTransactionsByMerchant(transactions, merchantName) {
-    return transactions.filter(t => t.merchant_name === merchantName);
-}
-
-/**
- * Вычисляет среднюю сумму транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {number} Средняя сумма
- */
-function calculateAverageTransactionAmount(transactions) {
-    if (transactions.length === 0) return 0;
-    return calculateTotalAmount(transactions) / transactions.length;
-}
-
-/**
- * Возвращает транзакции в заданном диапазоне сумм.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {number} minAmount - Минимальная сумма
- * @param {number} maxAmount - Максимальная сумма
- * @returns {Transaction[]} Отфильтрованные транзакции
- */
-function getTransactionsByAmountRange(transactions, minAmount, maxAmount) {
-    return transactions.filter(t =>
-        t.transaction_amount >= minAmount && t.transaction_amount <= maxAmount
-    );
-}
-
-/**
- * Вычисляет общую сумму дебетовых транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {number} Сумма дебетовых транзакций
- */
-function calculateTotalDebitAmount(transactions) {
-    return transactions
-        .filter(t => t.transaction_type === "debit")
-        .reduce((sum, t) => sum + t.transaction_amount, 0);
-}
-
-/**
- * Находит месяц с наибольшим количеством транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {string} Месяц в формате YYYY-MM
- */
-function findMostTransactionsMonth(transactions) {
-    const counts = {};
-    transactions.forEach(t => {
-        const month = new Date(t.transaction_date).toISOString().slice(0, 7);
-        counts[month] = (counts[month] || 0) + 1;
-    });
-    return Object.entries(counts).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
-}
-
-/**
- * Находит месяц с наибольшим количеством дебетовых транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {string} Месяц в формате YYYY-MM
- */
-function findMostDebitTransactionMonth(transactions) {
-    const counts = {};
-    transactions
-        .filter(t => t.transaction_type === "debit")
-        .forEach(t => {
-            const month = new Date(t.transaction_date).toISOString().slice(0, 7);
-            counts[month] = (counts[month] || 0) + 1;
-        });
-    return Object.entries(counts).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
-}
-
-/**
- * Определяет, какого типа транзакций больше: debit или credit.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {string} "debit", "credit" или "equal"
- */
-function mostTransactionTypes(transactions) {
-    const counts = { debit: 0, credit: 0 };
-    transactions.forEach(t => {
-        if      (t.transaction_type === "debit") counts.debit++;
-        else if (t.transaction_type === "credit") counts.credit++;
-    });
-
-    if (counts.debit  > counts.credit) return "debit";
-    if (counts.credit > counts.debit) return "credit";
-    return "equal";
-}
-
-/**
- * Возвращает транзакции, совершённые до заданной даты.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {string} date - Граничная дата (в формате YYYY-MM-DD)
- * @returns {Transaction[]} Отфильтрованные транзакции
- */
-function getTransactionsBeforeDate(transactions, date) {
-    const cutoff = new Date(date);
-    return transactions.filter(t => new Date(t.transaction_date) < cutoff);
-}
-
-/**
- * Ищет транзакцию по её идентификатору.
- * @param {Transaction[]} transactions - Массив транзакций
- * @param {string} id - Идентификатор транзакции
- * @returns {Transaction|undefined} Найденная транзакция или undefined
- */
-function findTransactionById(transactions, id) {
-    return transactions.find(t => t.transaction_id === id);
-}
-
-/**
- * Возвращает массив описаний транзакций.
- * @param {Transaction[]} transactions - Массив транзакций
- * @returns {string[]} Массив описаний
- */
-function mapTransactionDescriptions(transactions) {
-    return transactions.map(t => t.transaction_description);
+for (let i = 1; i <= 5; i++) {
+    console.log(`Iteration: ${i}`);
 }
 
 
+----HTML----
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="individual_work_1.js"></script>
+    <title>Hello,World!</title>
+</head>
+<body>
+<script>
+    alert("Hello,World!");
+    console.log("Hello, console!");
+</script>
+</body>
+</html>
 Ответы на контрольные вопросы
 
-1. Методы массивов для обработки объектов в JavaScript
-При работе с массивами объектов в JavaScript часто используют следующие методы:
-.forEach(callback) — перебирает каждый элемент массива без возврата нового массива. Используется для побочных эффектов.
-.map(callback) — возвращает новый массив, содержащий результат применения callback к каждому элементу.
-.filter(callback) — возвращает новый массив, содержащий только те элементы, для которых callback вернул true
-.reduce(callback, initialValue) — агрегирует значения в одно, например, сумму всех транзакций.
-.find(callback) — возвращает первый элемент, удовлетворяющий условию, либо undefined.
-.some(callback) / .every(callback) — проверяет, удовлетворяют ли некоторые / все элементы условию. 
-.sort(callback) — сортирует массив на месте, можно использовать для сортировки по дате или сумме.
-
-2. Как сравнивать даты в строковом формате
-Если даты представлены в формате ISO (например, "2024-05-20T10:00:00"), их можно сравнивать напрямую как строки или преобразовывать в объекты Date
-
-3. Разница между .map(), .filter() и .reduce()
-.map() — для преобразования каждого элемента. 
-.filter() — для выбора нужных элементов.
-.reduce() — для подсчёта или объединения всех элементов в одно значение.
+var устаревший, лучше избегать его, если возможно.
+let используют для переменных, которые могут изменяться.
+const для констант (например, массивов, объектов, функций), константность касается только привязки, не содержимого.
 
 
 
