@@ -1,0 +1,769 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Применяем шрифт Inter */
+            background-color: #ebebeb; /* Светлая тема по умолчанию */
+            width: 100%;
+            height: 100vh;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative; /* Для правильного позиционирования login-menu */
+            overflow: hidden; /* Чтобы избежать двойного скролла при переключении страниц */
+        }
+
+        .header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            position: fixed; /* Вернул fixed */
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: black; /* Цвет лого в светлой теме */
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333; /* Цвет ссылок в светлой теме */
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative; /* Для подчеркивания активной ссылки */
+        }
+        /* Подчеркивание активной ссылки */
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2d60ad; /* Цвет подчеркивания */
+        }
+        body.dark-mode .nav-link.active::after {
+            background-color: #8ab4f1;
+        }
+
+        .nav-link:hover {
+            color: #2d60ad; /* Цвет ссылок при наведении в светлой теме */
+        }
+
+        .nav-button {
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid black; /* Цвет рамки кнопки в светлой теме */
+            font-weight: bold;
+            color: black; /* Цвет текста кнопки в светлой теме */
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: black; /* Фон кнопки при наведении в светлой теме */
+            color: white; /* Цвет текста кнопки при наведении в светлой теме */
+        }
+
+        /* Кнопка переключения темы */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333; /* Цвет иконки переключателя в светлой теме */
+            transition: color 0.3s;
+        }
+        .theme-toggle:hover {
+            color: #2d60ad; /* Цвет иконки при наведении в светлой теме */
+        }
+
+        /* Темная тема */
+        body.dark-mode {
+            background: #0d1117; /* Более глубокий основной фон */
+            color: #f1f5f9; /* Основной цвет текста в темной теме */
+        }
+
+        body.dark-mode .header {
+            background-color: #161b22; /* Фон хедера в темной теме, чуть светлее основного */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Более выраженная тень для темной темы */
+        }
+        
+        body.dark-mode .logo {
+            color: #f1f5f9; /* Цвет лого в темной теме */
+            text-shadow: 0 0 5px rgba(200, 200, 255, 0.1); /* Легкое свечение для лого */
+        }
+
+        body.dark-mode .nav-link {
+            color: #c9d1d9; /* Цвет ссылок в темной теме (чуть приглушеннее основного текста) */
+        }
+        body.dark-mode .nav-link:hover {
+            color: #8ab4f1; /* Цвет ссылок при наведении в темной теме (пастельный синий) */
+        }
+
+        body.dark-mode .nav-button {
+            color: #c9d1d9;
+            border-color: #c9d1d9;
+        }
+
+        body.dark-mode .nav-button:hover {
+            background-color: #c9d1d9;
+            color: #161b22; /* Цвет текста кнопки при наведении (как фон хедера) */
+        }
+        
+        body.dark-mode .theme-toggle {
+            color: #c9d1d9;
+        }
+        body.dark-mode .theme-toggle:hover {
+            color: #8ab4f1;
+        }
+
+        /* Общие стили для всех страниц контента */
+        .content-wrapper {
+            padding: 40px;
+            text-align: center;
+            height: calc(100vh - 80px); /* Учитываем высоту хедера */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Выравнивание сверху */
+            align-items: center;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none; /* Отключаем события мыши, когда скрыто */
+            transition: opacity 0.5s ease;
+            position: absolute; /* Позиционируем абсолютно, чтобы не влиять на основной контент */
+            top: 80px; /* Сразу под хедером */
+            left: 0;
+            background-color: inherit; /* Наследует фон от body */
+            overflow-y: auto; /* Для скролла, если контент длинный */
+            z-index: 50; /* Для z-index страниц */
+        }
+        
+        /* Класс для активной/видимой страницы */
+        .content-wrapper.active-page {
+            opacity: 1;
+            pointer-events: all; /* Включаем события мыши, когда видимо */
+            z-index: 90; /* Выше других страниц, когда активна */
+        }
+
+        /* Класс для скрытой страницы */
+        .content-wrapper.hidden-page {
+            display: none; /* Скрываем из потока после анимации */
+        }
+
+        .page-content-box { /* Общий стиль для внутренних блоков контента на страницах */
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-top: 30px; /* Отступ от верхнего края wrapper */
+            width: 90%;
+            max-width: 800px; /* Увеличил максимальную ширину для общего контента */
+            text-align: left;
+            box-sizing: border-box;
+        }
+        body.dark-mode .page-content-box {
+            background-color: #1f293b;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-content-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #333;
+            text-align: center;
+        }
+        body.dark-mode .page-content-box h2 {
+            color: #f1f5f9;
+        }
+
+        /* Конкретные стили для главной страницы */
+        .main-content {
+            height: 100%; /* Занимает всю высоту content-wrapper */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2d60ad;
+        }
+        body.dark-mode .main-content h1 {
+            color: #8ab4f1;
+        }
+        .main-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.5;
+            color: #555;
+        }
+        body.dark-mode .main-content p {
+            color: #c9d1d9;
+        }
+
+        /* Стили для страницы настроек аккаунта и других страниц с формами */
+        .settings-content .settings-section {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .settings-content .settings-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        body.dark-mode .settings-content .settings-section {
+            border-bottom: 1px solid #334155;
+        }
+
+
+        .settings-content .settings-item {
+            margin-bottom: 15px;
+        }
+        .settings-content .settings-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        body.dark-mode .settings-content .settings-item label {
+            color: #c9d1d9;
+        }
+
+        .settings-content .settings-item input[type="password"],
+        .settings-content .settings-item input[type="text"],
+        .settings-content .settings-item input[type="tel"],
+        .settings-content .settings-item textarea { /* Добавил textarea */
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #f7f4f4e1;
+            color: #333;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к полям ввода */
+        }
+        .settings-content .settings-item input:focus,
+        .settings-content .settings-item textarea:focus {
+            outline: none;
+            border-color: #2d60ad;
+            box-shadow: 0 0 0 3px rgba(45, 96, 173, 0.2);
+        }
+        body.dark-mode .settings-content .settings-item input,
+        body.dark-mode .settings-content .settings-item textarea {
+            background-color: #2e3a4e;
+            border-color: #4a5a6a;
+            color: #f1f5f9;
+        }
+        body.dark-mode .settings-content .settings-item input:focus,
+        body.dark-mode .settings-content .settings-item textarea:focus {
+            border-color: #8ab4f1;
+            box-shadow: 0 0 0 3px rgba(138, 180, 241, 0.2);
+        }
+
+        .settings-content .settings-button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к кнопкам */
+        }
+        .settings-content .settings-button:hover {
+            background-color: #333;
+        }
+        body.dark-mode .settings-content .settings-button {
+            background-color: #8ab4f1;
+            color: #161b22;
+        }
+        body.dark-mode .settings-content .settings-button:hover {
+            background-color: #6a9ce6;
+        }
+
+
+        /* Индикатор статуса сервера */
+        .server-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .server-status.connected {
+            background-color: #28a745; /* Зеленый */
+            color: white;
+        }
+
+        .server-status.disconnected {
+            background-color: #dc3545; /* Красный */
+            color: white;
+        }
+
+        .server-status.checking {
+            background-color: #ffc107; /* Желтый */
+            color: #212529; /* Темный текст для желтого фона */
+        }
+        body.dark-mode .server-status.checking {
+            color: #333; 
+        }
+
+        .login-menu_wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #f0f2f5;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.dark-mode .login-menu_wrapper {
+            background-color: #0d1117;
+        }
+        
+        .login-menu_items {
+            width: 460px;
+            height: 360px;
+            margin: auto;
+            vertical-align: middle;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 44px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.11) !important;
+            padding-top: 20px;
+            position: relative;
+        }
+
+        body.dark-mode .login-menu_items {
+            background-color: #1f293b;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .LogoUser {
+            width: 140px;
+            height: 140px;
+            margin: -16% auto 0;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            z-index: 10;
+        }
+        body.dark-mode .LogoUser {
+            background-color: #1f293b;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            background-image: url("MaterialTest/Logo.jpg"); /* Убедитесь, что путь правильный */
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            box-shadow: 0px 1px 50px rgba(0, 0, 0, 0.274);
+            transition: transform 0.3s ease;
+        }
+        
+        .Menu_Buttons {
+            width: 100%;
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .login-toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            margin-top: -20px;
+        }
+        .login-toggle-button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            color: #555;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к кнопкам */
+        }
+        .login-toggle-button.active {
+            background-color: #2d60ad;
+            color: white;
+            border-color: #2d60ad;
+        }
+        body.dark-mode .login-toggle-button {
+            background-color: #2e3a4e;
+            color: #c9d1d9;
+            border-color: #4a5a6a;
+        }
+        body.dark-mode .login-toggle-button.active {
+            background-color: #8ab4f1;
+            color: #161b22;
+            border-color: #8ab4f1;
+        }
+
+        /* Стили для полей ввода в логин-форме */
+        .input-group {
+            width: 80%;
+            display: flex;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .input-group .icon-wrapper {
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(128, 128, 128, 0.178);
+            min-height: 40px;
+        }
+        body.dark-mode .input-group .icon-wrapper {
+            background-color: rgba(60, 70, 80, 0.3);
+        }
+
+        .input-group .input-text {
+            flex-grow: 1;
+            height: auto;
+            padding: 10px 15px;
+            border: none;
+            box-shadow: none;
+            font-size: large;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к полям ввода */
+            background-color: #f7f4f4e1;
+            color: #333;
+        }
+        body.dark-mode .input-group .input-text {
+            background-color: #2e3a4e;
+            color: #f1f5f9;
+        }
+        body.dark-mode .input-group .input-text::placeholder {
+            color: #a0aec0;
+        }
+
+        .Icon-Password {
+            background-image: url("MaterialTest/pass.png");
+            background-size: 28px 28px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .Icon-Username {
+            background-image: url("MaterialTest/user.png");
+            background-size: 25px 25px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .Icon-Phone {
+            background-image: url("MaterialTest/phone.png");
+            background-size: 25px 25px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .View {
+            width: 80%;
+            margin-top: 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 0.5px solid #dac898;
+            border-radius: 4px;
+            background-color: rgb(241, 239, 233);
+            cursor: pointer;
+            transition: background-color 0.8s;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        body.dark-mode .checkbox {
+            background-color: #2e3a4e;
+            border-color: #556677;
+        }
+
+        .checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 4px;
+            height: 7px;
+            border: solid #a57a7a;
+            border-width: 0 1px 1px 0;
+            transform: translate(-50%, -50%) rotate(45deg);
+            display: block;
+        }
+        body.dark-mode .checkbox:checked::after {
+            border-color: #f1f5f9;
+        }
+        .checkbox:hover {
+            background-color: rgb(218, 213, 201);
+            transition: background-color 0.8s;
+        }
+        body.dark-mode .checkbox:hover {
+            background-color: #445566;
+        }
+        .checkbox:checked {
+            background: rgb(233, 192, 78);
+        }
+        body.dark-mode .checkbox:checked {
+            background: #8ab4f1;
+        }
+
+        .PlaceHolderCheckBox {
+            font-size: small;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к тексту чекбокса */
+            color: rgba(0, 0, 0, 0.562);
+        }
+        body.dark-mode .PlaceHolderCheckBox {
+            color: #a0aec0;
+        }
+
+        .submit-button-container {
+            width: 75%;
+            margin-top: 25px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 0px 0px 50px 50px;
+            box-shadow: 0 21px 22px -10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            transition: background-color 0.8s;
+        }
+        body.dark-mode .submit-button-container {
+            background-color: #1f293b;
+            box-shadow: 0 21px 22px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit {
+            width: 100px;
+            border: none;
+            background-color: transparent;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к кнопке отправки */
+            font-size: large;
+            color: black;
+            font-weight: 600;
+            padding: 10px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        body.dark-mode .submit {
+            color: #f1f5f9;
+        }
+        /* Ховер эффект для самой кнопки, чтобы только текст желтел */
+        .submit:hover {
+            color: rgb(233, 192, 78); /* Желтый цвет для текста при наведении */
+        }
+        body.dark-mode .submit:hover {
+            color: #fdd835; /* Более яркий желтый для темной темы */
+        }
+
+
+        /* --- НОВЫЕ СТИЛИ ДЛЯ ПОЛЬЗОВАТЕЛЬСКОГО ИНТЕРФЕЙСА (АВАТАР И МЕНЮ) --- */
+        .user-menu-container {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            background-image: url('MaterialTest/default_avatar.png'); /* Пример: путь к аватару */
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .user-avatar:hover {
+            border-color: #2d60ad;
+        }
+
+        body.dark-mode .user-avatar {
+            border-color: transparent;
+        }
+        body.dark-mode .user-avatar:hover {
+            border-color: #8ab4f1;
+        }
+
+        .user-dropdown-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            min-width: 180px;
+            z-index: 101;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+
+        .user-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+            font-family: 'Inter', sans-serif; /* Применяем Inter к ссылкам меню */
+        }
+
+        .user-dropdown-menu a:hover {
+            background-color: #f0f0f0;
+            color: #2d60ad;
+        }
+
+        /* Темная тема для выпадающего меню */
+        body.dark-mode .user-dropdown-menu {
+            background-color: #1f293b;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        body.dark-mode .user-dropdown-menu a {
+            color: #c9d1d9;
+        }
+        body.dark-mode .user-dropdown-menu a:hover {
+            background-color: #2e3a4e;
+            color: #8ab4f1;
+        }
+
+        /* --- Классы для управления видимостью (только для JS) --- */
+        .hidden {
+            display: none !important;
+        }
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .fade-in {
+            opacity: 1;
+            pointer-events: all;
+            transition: opacity 0.5s ease;
+        }
+        .login-menu-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* Стили для таблицы файлов */
+        .files-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .files-table th, .files-table td {
+            padding: 12px 15px;
+            border: 1px solid #eee;
+            text-align: left;
+        }
+        .files-table th {
+            background-color: #f8f8f8;
+            font-weight: 600;
+            color: #666;
+        }
+        body.dark-mode .files-table th {
+            background-color: #2e3a4e;
+            color: #c9d1d9;
+        }
+        body.dark-mode .files-table td {
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+        .files-table tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        body.dark-mode .files-table tr:nth-child(even) {
+            background-color: #263345;
+        }
+        .files-table .download-link {
+            color: #2d60ad;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .files-table .download-link:hover {
+            text-decoration: underline;
+        }
+        body.dark-mode .files-table .download-link {
+            color: #8ab4f1;
+        }
+        
+        .file-group-heading {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #2d60ad;
+            text-align: left;
+        }
+        body.dark-mode .file-group-heading {
+            color: #8ab4f1;
+        }

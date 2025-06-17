@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APEX - Project Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <div class="login-menu_wrapper" id="loginMenuWrapper">
+        <div class="login-menu_items">
+            <div class="LogoUser">
+                <div class="logo-img"></div>
+            </div>
+            <button id="darkModeToggleLogin" class="theme-toggle" title="Toggle dark/light mode" style="position: absolute; top: 20px; right: 20px;">🌙</button>
+
+            <div class="Menu_Buttons">
+                <div class="login-toggle-container">
+                    <button class="login-toggle-button active" id="usernameLoginToggle">По имени пользователя</button>
+                    <button class="login-toggle-button" id="phoneLoginToggle">По номеру телефона</button>
+                </div>
+
+                <div class="input-group">
+                    <div class="icon-wrapper">
+                        <div class="Icon-Username" id="usernameIcon"></div>
+                        <div class="Icon-Phone hidden" id="phoneIcon"></div>
+                    </div>
+                    <input type="text" placeholder="Username" class="input-text" id="username">
+                </div>
+                <div class="input-group">
+                    <div class="icon-wrapper Icon-Password"></div>
+                    <input type="password" placeholder="Password" class="input-text" id="password">
+                </div>
+                
+                <div class="View">
+                    <input type="checkbox" class="checkbox" id="rememberMe">
+                    <span class="PlaceHolderCheckBox"> Remember me</span>
+                </div>
+                
+                <div class="submit-button-container">
+                    <button type="button" class="submit" id="loginButton">LOGIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="applicationContainer" style="display: none;">
+        <header class="header" id="mainHeader">
+            <div class="logo">APEX</div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" id="homeLink">Home</a>
+                <a href="#" class="nav-link" id="serverLink">Server</a>
+                <a href="#" class="nav-link" id="configLink">Config</a>
+                <a href="#" class="nav-link" id="myVpnLink">My VPN</a>
+                <a href="#" class="nav-link" id="filesLink">Files</a>
+                <a href="#" class="nav-button">Contact</a>
+                
+                <div class="user-menu-container">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <div class="user-dropdown-menu" id="userDropdown">
+                        <a href="#" id="settingsLink">Настройки аккаунта</a>
+                        <a href="#" id="logoutLink">Выход</a>
+                    </div>
+                </div>
+
+                <button id="darkModeToggleMain" class="theme-toggle" title="Toggle dark/light mode">🌙</button>
+            </nav>
+        </header>
+
+        <div class="content-wrapper active-page" id="homeContentWrapper">
+            <section class="main-content">
+                <h1>Welcome to APEX</h1>
+                <p>Access your project files, server settings, and VPN features all in one place.</p>
+            </section>
+        </div>
+
+        <div class="content-wrapper hidden-page" id="settingsContentWrapper">
+            <div class="page-content-box settings-content">
+                <h2>Настройки аккаунта</h2>
+
+                <div class="settings-section">
+                    <h3>Смена пароля</h3>
+                    <div class="settings-item">
+                        <label for="currentPassword">Текущий пароль:</label>
+                        <input type="password" id="currentPassword" placeholder="Введите текущий пароль">
+                    </div>
+                    <div class="settings-item">
+                        <label for="newPassword">Новый пароль:</label>
+                        <input type="password" id="newPassword" placeholder="Введите новый пароль">
+                    </div>
+                    <div class="settings-item">
+                        <label for="confirmNewPassword">Подтвердите новый пароль:</label>
+                        <input type="password" id="confirmNewPassword" placeholder="Подтвердите новый пароль">
+                    </div>
+                    <button class="settings-button" id="changePasswordButton">Сменить пароль</button>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Общие настройки</h3>
+                    <div class="settings-item">
+                        <label for="emailInput">Email:</label>
+                        <input type="text" id="emailInput" value="user@example.com" disabled>
+                    </div>
+                    <div class="settings-item">
+                        <label for="phoneDisplay">Номер телефона:</label>
+                        <input type="tel" id="phoneDisplay" value="+7 (999) 123-45-67" disabled>
+                    </div>
+                </div>
+                <button class="settings-button" id="backToHomePageFromSettings">Назад к главной</button>
+            </div>
+        </div>
+
+        <div class="content-wrapper hidden-page" id="serverContentWrapper">
+            <div class="page-content-box">
+                <h2>Server Management</h2>
+                <p>Here you can monitor server status, view logs, and manage server configurations.</p>
+                <p>Текущий статус: <strong id="serverPageStatus">Загрузка...</strong></p>
+                <button class="settings-button" style="max-width: 200px; margin: 20px auto 0;">Перезапустить сервер</button>
+            </div>
+        </div>
+
+        <div class="content-wrapper hidden-page" id="configContentWrapper">
+            <div class="page-content-box">
+                <h2>Configuration Settings</h2>
+                <p>Manage various application and system configurations here.</p>
+                
+                <div class="settings-section">
+                    <h3>Управление PowerShell (Сервер)</h3>
+                    <div class="settings-item">
+                        <label for="powershellCommand">Команда для выполнения:</label>
+                        <textarea id="powershellCommand" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background-color: #f7f4f4e1; color: #333;">Start-Service -Name "BITS" -Force</textarea>
+                    </div>
+                    <button class="settings-button" id="runPowershellButton">Выполнить команду PowerShell (На сервере)</button>
+                    <p style="font-size: 0.85rem; margin-top: 10px; color: #777;">*Эта функция демонстрирует отправку команды на сервер. Прямой запуск PowerShell на вашем компьютере невозможен из браузера.</p>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Общие настройки конфигурации</h3>
+                    <div class="settings-item">
+                        <label for="appVersion">Версия приложения:</label>
+                        <input type="text" id="appVersion" value="1.0.0" disabled>
+                    </div>
+                    <div class="settings-item">
+                        <label for="dataStorage">Объем данных:</label>
+                        <input type="text" id="dataStorage" value="500 GB" disabled>
+                    </div>
+                </div>
+                <button class="settings-button" style="max-width: 200px; margin: 20px auto 0;">Сохранить конфиг</button>
+            </div>
+        </div>
+
+        <div class="content-wrapper hidden-page" id="myVpnContentWrapper">
+            <div class="page-content-box">
+                <h2>My VPN</h2>
+                <p>Manage your VPN connections, view active sessions, and configure VPN clients.</p>
+                <p>Статус VPN: <strong style="color: green;">Подключено</strong></p>
+                <div class="settings-item">
+                    <label for="vpnServer">VPN сервер:</label>
+                    <input type="text" id="vpnServer" value="vpn.apex.com" disabled>
+                </div>
+                <button class="settings-button" style="max-width: 200px; margin: 20px auto 0;">Отключить VPN</button>
+            </div>
+        </div>
+
+        <div class="content-wrapper hidden-page" id="filesContentWrapper">
+            <div class="page-content-box">
+                <h2>File Storage</h2>
+                <p>Access and download project-related files.</p>
+                
+                <div class="file-group-heading">Общие файлы</div>
+                <table class="files-table">
+                    <thead>
+                        <tr>
+                            <th>Имя файла</th>
+                            <th>Размер</th>
+                            <th>Дата загрузки</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Project_Plan_Q2_2024.pdf</td>
+                            <td>1.2 MB</td>
+                            <td>2024-05-10</td>
+                            <td><a href="#" class="download-link">Скачать</a></td>
+                        </tr>
+                        <tr>
+                            <td>Marketing_Strategy.docx</td>
+                            <td>0.8 MB</td>
+                            <td>2024-04-28</td>
+                            <td><a href="#" class="download-link">Скачать</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="file-group-heading">Отчеты</div>
+                <table class="files-table">
+                    <thead>
+                        <tr>
+                            <th>Имя файла</th>
+                            <th>Размер</th>
+                            <th>Дата загрузки</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly_Report_May.xlsx</td>
+                            <td>0.5 MB</td>
+                            <td>2024-06-01</td>
+                            <td><a href="#" class="download-link">Скачать</a></td>
+                        </tr>
+                        <tr>
+                            <td>Q1_Financials.zip</td>
+                            <td>3.1 MB</td>
+                            <td>2024-04-15</td>
+                            <td><a href="#" class="download-link">Скачать</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="settings-button" style="max-width: 200px; margin: 30px auto 0;">Загрузить новый файл</button>
+            </div>
+        </div>
+        
+        <div class="server-status checking" id="serverStatusIndicator">
+            Проверка подключения...
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
