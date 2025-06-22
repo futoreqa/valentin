@@ -23,7 +23,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#Screenshots">Screenshots</a> •
+  <a href="#Postman">Postman</a> •
 </p>
 
 ![screenshot](cd9fc68e-a157-4be8-9991-b4c36478bcfb.png)
@@ -59,4 +59,8 @@ $ npm start
 
 ```
 
-## Screenshots
+## Работа с API через Postman
+
+Для тестирования API можно использовать [Postman](https://www.postman.com/).
+
+---
