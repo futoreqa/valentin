@@ -70,4 +70,18 @@ $ npm start
 Метод: GET
 URL - http://localhost:3000/products
 ```
-[screenshot](PHOTO/1.png)
+![screenshot](PHOTO/1.png)
+📦 Примеры запросов
+```bash
+Получить все продукты
+
+Метод: POST
+URL - http://localhost:3000/products
+
+Raw - Body:
+{
+  "name": "Клавиатура",
+  "price": 1500,
+  "description": "Механическая клавиатура"
+}
+```
