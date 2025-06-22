@@ -103,4 +103,14 @@ Raw - Body:
   "description": "Механическая клавиатура"
 }
 ```
-![screenshot](PHOTO/7.png)
+![screenshot](PHOTO/2.png)
+
+### Изменить продукт
+```bash
+
+Метод: DELETE
+URL - http://localhost:3000/products/1
+
+```
+![screenshot](PHOTO/5.png)
+![screenshot](PHOTO/6.png)
