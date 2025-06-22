@@ -5,7 +5,7 @@
   Apex API
   <br>
 </h1>
-
+<h4 align="center">Задание : Программа с использованием Express js , Node js , CRUD api ,Должна быть 1 модель 2 таблицы база данных с 2 энтити .</h4>
 <h4 align="center">A CRUD API for managing products and orders using Node.js and Express.</h4>
 
 <p align="center">
