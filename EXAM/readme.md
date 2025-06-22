@@ -26,7 +26,7 @@
   <a href="#Screenshots">Screenshots</a> •
 </p>
 
-![screenshot](https://www.flickr.com/photos/203032652@N02/54604803802/in/dateposted-public/)
+![screenshot](cd9fc68e-a157-4be8-9991-b4c36478bcfb.png)
 
 ## Key Features
 
