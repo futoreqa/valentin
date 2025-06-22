@@ -70,4 +70,4 @@ $ npm start
 Метод: GET
 URL - http://localhost:3000/products
 ```
-![screenshot](PHOTO/1.png)
+[screenshot](PHOTO/1.png)
