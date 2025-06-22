@@ -70,8 +70,8 @@ $ npm start
 Метод: GET
 URL - http://localhost:3000/products
 ```
-![screenshot](PHOTO/1.png)
-📦 Примеры запросов
+![screenshot](PHOTO/7.png)
+
 ```bash
 Получить все продукты
 
