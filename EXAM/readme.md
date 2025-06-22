@@ -58,7 +58,7 @@ $ npm install
 $ npm start
 
 ```
-
+---
 ## Работа с API через Postman
 
 Для тестирования API можно использовать [Postman](https://www.postman.com/).
