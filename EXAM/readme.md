@@ -23,7 +23,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#Postman">Postman</a> •
+  <a href="#Работа-с-API-через-Postman">Postman</a> •
 </p>
 
 ![screenshot](cd9fc68e-a157-4be8-9991-b4c36478bcfb.png)
