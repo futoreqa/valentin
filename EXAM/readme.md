@@ -70,10 +70,11 @@ $ npm start
 Метод: GET
 URL - http://localhost:3000/products
 ```
-![screenshot](PHOTO/7.png)
+![screenshot](PHOTO/3.png)
+![screenshot](PHOTO/4.png)
 
+Вставить продукт
 ```bash
-Получить все продукты
 
 Метод: POST
 URL - http://localhost:3000/products
@@ -85,3 +86,19 @@ Raw - Body:
   "description": "Механическая клавиатура"
 }
 ```
+![screenshot](PHOTO/7.png)
+
+Вставить продукт
+```bash
+
+Метод: PUT
+URL - http://localhost:3000/products/1
+
+Raw - Body:
+{
+  "name": "Клавиатура",
+  "price": 3455,
+  "description": "Механическая клавиатура"
+}
+```
+![screenshot](PHOTO/7.png)
