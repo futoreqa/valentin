@@ -105,7 +105,7 @@ Raw - Body:
 ```
 ![screenshot](PHOTO/2.png)
 
-### Изменить продукт
+### Удалить продукт
 ```bash
 
 Метод: DELETE
