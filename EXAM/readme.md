@@ -24,7 +24,6 @@
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#api-endpoints">API Endpoints</a> •
-  <a href="#ui-access">UI Access</a> •
   <a href="#screenshots">Screenshots</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
@@ -37,7 +36,6 @@
 * Full CRUD API for Products and Orders
 * SQLite in-memory database
 * Built with Node.js, Express.js, and Sequelize
-* Simple HTML UI for direct API interaction
 * Lightweight and easy to install
 * Ready-to-use Postman testing
 * Supports JSON data format
