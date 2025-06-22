@@ -49,7 +49,7 @@ To clone and run this application, you will need [Git](https://git-scm.com) and 
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-username/apex-api
+$ git clone https://github.com/EXAM/apex-api
 
 # Go into the repository
 $ cd apex-api
