@@ -21,8 +21,8 @@
 </p>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#key-features">Возможности</a> •
+  <a href="#how-to-use">Как использовать</a> •
   <a href="#Работа-с-API-через-Postman">Postman</a> •
 </p>
 
@@ -30,19 +30,19 @@
 
 ## Key Features
 
-* Full CRUD API for Products and Orders
-* SQLite in-memory database
-* Built with Node.js, Express.js, and Sequelize
-* Lightweight and easy to install
-* Ready-to-use Postman testing
-* Supports JSON data format
-* Clean and minimal structure for learning
+* Полный CRUD API для продуктов и заказов
+* База данных SQLite в оперативной памяти
+* Построено с помощью Node.js, Express.js и Sequelize
+* Легкий и простой в установке
+* Тестирование готового к использованию PostMan
+* Поддерживает формат данных JSON
+* Простая и минималистичная структура для обучения
 
 ---
 
 ## How To Use
 
-To clone and run this application, you will need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed on your computer. From your command line:
+Для клонирования и использования вам понадобится [Git](https://git-scm.com) и [Node.js](https://nodejs.org/en/download/) установленном на вашем компютере. Из вашей командной строки:
 
 ```bash
 # Clone this repository
