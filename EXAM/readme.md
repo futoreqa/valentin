@@ -26,7 +26,7 @@
   <a href="#Screenshots">Screenshots</a> •
 </p>
 
-![screenshot]([https://sdmntprukwest.oaiusercontent.com/files/00000000-62a8-6243-8ff8-d36318208838/raw?se=2025-06-22T09%3A49%3A25Z&sp=r&sv=2024-08-04&sr=b&scid=55688e79-ca62-59fc-8738-ede7c43cd25a&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-22T07%3A48%3A32Z&ske=2025-06-23T07%3A48%3A32Z&sks=b&skv=2024-08-04&sig=ul2u9xH93GriF2Tw/wm6E13pq9azIR3eaypTh2N9VG4%3D))
+![screenshot](https://www.flickr.com/photos/203032652@N02/54604803802/in/dateposted-public/)
 
 ## Key Features
 
