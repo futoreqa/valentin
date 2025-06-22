@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A CRUD API with a simple UI for managing products and orders using Node.js and Express.</h4>
+<h4 align="center">A CRUD API for managing products and orders using Node.js and Express.</h4>
 
 <p align="center">
   <a href="https://badge.fury.io/js/apex-api">
