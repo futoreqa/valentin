@@ -49,10 +49,10 @@ To clone and run this application, you will need [Git](https://git-scm.com) and 
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/EXAM/apex-api
+$ git clone https://github.com/futoreqa/valentin.git
 
 # Go into the repository
-$ cd apex-api
+$ cd EXAM
 
 # Install dependencies
 $ npm install
