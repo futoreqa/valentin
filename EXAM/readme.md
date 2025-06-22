@@ -115,5 +115,16 @@ URL - http://localhost:3000/products/1
 ![screenshot](PHOTO/5.png)
 ![screenshot](PHOTO/6.png)
 
+---
 
+### Добавить продукт в энтити заказов
+
+```bash
+
+Метод: POST
+URL - http://localhost:3000/orders
+
+и тп команды
+
+```
 ![image](https://github.com/user-attachments/assets/5768fc06-d441-4bf6-a4c6-0263c71be827)
